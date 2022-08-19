@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 import { Helmet } from "react-helmet";
 import Navbar from "../../Navbar/Navbar";
@@ -44,86 +44,114 @@ function Calculator() {
       topic: "Mathematical Induction",
       details: [
         `Mathematical Induction is a technique to prove the given statement/Formula (p(n)) is true for every possible value of the variable in the statement that is based on any specified set of values for example a set of all natural numbers N.`,
-      <br />,
-      <br />,
-      `It is a two step process.`,
-      <br />,
-      `1) Base step :- It is the foremost and the most basic step. It proves that the statement is true for an initial step for example x=y where y is a natural number is true for x=1.`,
-      <br />,
-      `2) Inductive step :- It proves that if the statement is true for nth iteration (nth value) then the formula is true of (n+1)th iteration also. The hypothesis in the inductive step, that the statement holds for a particular n, is called the induction hypothesis or inductive hypothesis. To prove the inductive step, one assumes the induction hypothesis for n and then uses this assumption to prove that the statement holds for n + 1.`,
-      <br />,
-      <br />,
-      `Also there is another type of Induction technique called "STRONG INDUCTION" which is used to prove propositional function, P(n) is true for all positive integers, n`,
-      <br />,
-      `It is also a two step process.`,
-      <br />,
-      `1) Base step :- It proves the initial base case i.e the propositional function p(n) is true for the least positive integer 1. i.e. p(1) is true.`,
-      <br />,
-      `2) Inductive step :- It uses the conditional rule of "if this then that" rule. It says that if (p(1) ∩ p(2) ∩ p(3) .... ∩ p(k)) is true for values upto k then p(k+1) is also true where k belong to the set of positive integers. `,
-      <br />,
-      <br />
+        <br />,
+        <br />,
+        `It is a two step process.`,
+        <br />,
+        `1) Base step :- It is the foremost and the most basic step. It proves that the statement is true for an initial step for example x=y where y is a natural number is true for x=1.`,
+        <br />,
+        `2) Inductive step :- It proves that if the statement is true for nth iteration (nth value) then the formula is true of (n+1)th iteration also. The hypothesis in the inductive step, that the statement holds for a particular n, is called the induction hypothesis or inductive hypothesis. To prove the inductive step, one assumes the induction hypothesis for n and then uses this assumption to prove that the statement holds for n + 1.`,
+        <br />,
+        <br />,
+        `Also there is another type of Induction technique called "STRONG INDUCTION" which is used to prove propositional function, P(n) is true for all positive integers, n`,
+        <br />,
+        `It is also a two step process.`,
+        <br />,
+        `1) Base step :- It proves the initial base case i.e the propositional function p(n) is true for the least positive integer 1. i.e. p(1) is true.`,
+        <br />,
+        `2) Inductive step :- It uses the conditional rule of "if this then that" rule. It says that if (p(1) ∩ p(2) ∩ p(3) .... ∩ p(k)) is true for values upto k then p(k+1) is also true where k belong to the set of positive integers. `,
+        <br />,
+        <br />,
       ],
       formula: [
         `In order to show that the conjecture is true for all cases, we can prove it by mathematical induction as outlined below.`,
-      <br />,
-      <br />,
-      `Important notes and explanations about a proof by mathematical induction`,
-      <br />,
-      <img src="https://www.basic-mathematics.com/images/proof-by-mathematical-induction.png" alt="" />,
-      <br />
+        <br />,
+        <br />,
+        `Important notes and explanations about a proof by mathematical induction`,
+        <br />,
+        <img
+          src="https://www.basic-mathematics.com/images/proof-by-mathematical-induction.png"
+          alt=""
+        />,
+        <br />,
       ],
       process: [
         `In 1., you are trying to show that the conjecture is true for specific values. You are free to do this test with just one value or fifty values of your choice or more.
       However, showing it is true for one million values or more still does not prove it will be true for all values. This is a very important observation!`,
-      <br />,
-      <br />,      
-      `In 2., since you have already shown that the conjecture is true for one or more values, it is logical to suppose or assume it is true for n = k or generally speaking.
+        <br />,
+        <br />,
+        `In 2., since you have already shown that the conjecture is true for one or more values, it is logical to suppose or assume it is true for n = k or generally speaking.
       We usually use the assumption that we make here to complete or prove 3.`,
-      <br />,
-      <br />,
-      `In 3., you finally show it is true for any values. Notice that 2. did not show it is true for any values.`,
-      <br />],
+        <br />,
+        <br />,
+        `In 3., you finally show it is true for any values. Notice that 2. did not show it is true for any values.`,
+        <br />,
+      ],
       example1: [
         <b>Example1:</b>,
         `Sum of consecutive natural numbers`,
         "Mathematical induction can be used to prove the following statement P(n) for all natural numbers n.",
-        <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f71f7909df7374df61735ad6b1fbccdb11f0a5d2" alt="" />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f71f7909df7374df61735ad6b1fbccdb11f0a5d2"
+          alt=""
+        />,
         <br />,
         `Proposition. For any n belong to Natural numbers,`,
-        <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/9bf0be7dc58fe4f2239432f8c455b43c81fc1915" alt="" />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/9bf0be7dc58fe4f2239432f8c455b43c81fc1915"
+          alt=""
+        />,
         <br />,
         <br />,
         `Proof. Let P(n) be the statement `,
-        <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/9bf0be7dc58fe4f2239432f8c455b43c81fc1915" alt="" />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/9bf0be7dc58fe4f2239432f8c455b43c81fc1915"
+          alt=""
+        />,
         `We give a proof by induction on n.`,
         <br />,
         `Base case: Show that the statement holds for the smallest natural number n = 0.`,
-         <br />,
+        <br />,
         `P(0) is clearly true: `,
-        <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e6362a08a500f5fb6a222d694977f624f1b6a01f" alt="" />,
-         <br />,
-         `Inductive step: Show that for any k ≥ 0, if P(k) holds, then P(k + 1) also holds.`,
-         <br />,
-         `Assume the induction hypothesis that for a particular k, the single case n = k holds, meaning P(k) is true:`,
-         <br />,
-         <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f8836d7410f8647a0e47edb087a580dd312f1694" alt="" />,
-         <br />,
-         `It follows that:`,
-         <br />,
-         <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/233e4ed7ce920229cc241e45ecd575a2ad38f6d8" alt="" />,
-         <br />,
-         `Algebraically, the right hand side simplifies as:`,
-         <br />,
-         <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c8f7aa8426ee8017ea5146530412c0e80efe19ce" alt="" />,
-         <br />,
-         `Equating the extreme left hand and right hand sides, we deduce that:`,
-         <br />,
-         <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/42f873071efcd5268ae0aee53954dbb5ca5f5c58" alt="" />,
-         <br />,
-         `That is, the statement P(k + 1) also holds true, establishing the inductive step.
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/e6362a08a500f5fb6a222d694977f624f1b6a01f"
+          alt=""
+        />,
+        <br />,
+        `Inductive step: Show that for any k ≥ 0, if P(k) holds, then P(k + 1) also holds.`,
+        <br />,
+        `Assume the induction hypothesis that for a particular k, the single case n = k holds, meaning P(k) is true:`,
+        <br />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f8836d7410f8647a0e47edb087a580dd312f1694"
+          alt=""
+        />,
+        <br />,
+        `It follows that:`,
+        <br />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/233e4ed7ce920229cc241e45ecd575a2ad38f6d8"
+          alt=""
+        />,
+        <br />,
+        `Algebraically, the right hand side simplifies as:`,
+        <br />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c8f7aa8426ee8017ea5146530412c0e80efe19ce"
+          alt=""
+        />,
+        <br />,
+        `Equating the extreme left hand and right hand sides, we deduce that:`,
+        <br />,
+        <img
+          src="https://wikimedia.org/api/rest_v1/media/math/render/svg/42f873071efcd5268ae0aee53954dbb5ca5f5c58"
+          alt=""
+        />,
+        <br />,
+        `That is, the statement P(k + 1) also holds true, establishing the inductive step.
 
          Conclusion: Since both the base case and the inductive step have been proved as true, by mathematical induction the statement P(n) holds for every natural number n.`,
-         <br />
+        <br />,
       ],
     },
     {
@@ -532,10 +560,114 @@ function Calculator() {
         </span>,
       ],
     },
+    {
+      topic: "Determinants",
+      details:
+        "A determinant is a scalar value which is obtained using a square matrix. Determinants are used to find adjoint and inverse of a matrix. Other important uses include solving linear equations and capturing linear transformations effects. It is mainly calculated by adding the product of elements and their co-factors.",
+      formula: "",
+      process: [
+        "1. Set a sqaure matrix.",
+        <br />,
+        <br />,
+        "2. Convert the square matrix to row canonical form or a upper triangular form. To do so, one must use elementary row operations.",
+        <br />,
+        <br />,
+        "3. The final result is calculated by multiplying the main diagonal elements of the matrix.",
+      ],
+      example1: [
+        "Let the given sqaure matrix be : ",
+        <br />,
+        <br />,
+        <div className="matrix">
+          <table>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>7</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>9</td>
+                <td>11</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>,
+        <br />,
+        <br />,
+        "1) Eliminate elements in the 1st column under the 1st element",
+        <br />,
+        "⇒ R2 = R2 - 2 * R1",
+        <br />,
+        "⇒ R3 = R3 - 3 * R1",
+        <br />,
+        <br />,
+        <div className="matrix">
+          <table>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>3</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>3</td>
+                <td>2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>,
+      ],
+      example2: [
+        "2) Eliminate elements in the 2st column under the 2nd element",
+        <br />,
+        "⇒ R3 = R3 - 1 * R1",
+        <br />,
+        <br />,
+        <div className="matrix">
+          <table>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>3</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>0</td>
+                <td>0</td>
+                <td>-2</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>,
+        <br />,
+        <br />,
+        <br />,
+        <center>⇒ Δ = 1 x 3 x (-2) = -6 </center>,
+      ],
+    },
   ];
 
   const page = Topics.filter((data) => data.topic === topic);
   const details = page[0];
+  const ref = useRef(null);
 
   //Sets and relation calulator
   const SetsAndRelation = () => {
@@ -554,7 +686,8 @@ function Calculator() {
     const [onlyNewB, setNewOnlyB] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [showSolutionUnion, setShowSolutionUnion] = useState(false);
-    const [showSolutionIntersection, setShowSolutionIntersection] = useState(false);
+    const [showSolutionIntersection, setShowSolutionIntersection] =
+      useState(false);
     const [showSolutionOnlyA, setShowSolutionOnlyA] = useState(false);
     const [showSolutionOnlyB, setShowSolutionOnlyB] = useState(false);
     const [showSolutionRelations, setShowSolutionRelations] = useState(false);
@@ -591,7 +724,9 @@ function Calculator() {
       a_: newA,
       b: newB,
     };
-    const insertValuesRelations = `2 ^ (${a !== null ? a.length : 0} * ${b !== null ? b.length : 0})`;
+    const insertValuesRelations = `2 ^ (${a !== null ? a.length : 0} * ${
+      b !== null ? b.length : 0
+    })`;
 
     function reset() {
       setA(null);
@@ -603,13 +738,13 @@ function Calculator() {
       setRelations(null);
       setShowSolutionUnion(false);
       setShowSolutionIntersection(false);
-      setShowSolutionOnlyA(false);      
-      setShowSolutionOnlyB(false);     
+      setShowSolutionOnlyA(false);
+      setShowSolutionOnlyB(false);
       setShowSolutionRelations(false);
     }
 
     const calcResult = () => {
-      if(a !== null && b !== null){
+      if (a !== null && b !== null) {
         var tempintersection = [];
         for (var i = 0; i < a.length; i++) {
           var found = false;
@@ -623,9 +758,9 @@ function Calculator() {
         }
         setIntersection(tempintersection);
 
-        setNewIntersection(tempintersection.toLocaleString('en-US'))
+        setNewIntersection(tempintersection.toLocaleString("en-US"));
         setShowSolutionIntersection(true);
-  
+
         var tempunion = [];
         for (let i = 0; i < a.length; i++) tempunion.push(a[i]);
         for (let i = 0; i < b.length; i++) {
@@ -639,10 +774,10 @@ function Calculator() {
           if (!found) tempunion.push(b[i]);
         }
         setUnion(tempunion);
-        
-        setNewUnion(tempunion.toLocaleString('en-US'));
+
+        setNewUnion(tempunion.toLocaleString("en-US"));
         setShowSolutionUnion(true);
-  
+
         var aonly = [];
         for (let i = 0; i < a.length; i++) {
           var found1 = false;
@@ -655,10 +790,10 @@ function Calculator() {
           if (!found1) aonly.push(a[i]);
         }
         setOnlyA(aonly);
-        
-        setNewOnlyA(aonly.toLocaleString('en-US'));
+
+        setNewOnlyA(aonly.toLocaleString("en-US"));
         setShowSolutionOnlyA(true);
-  
+
         var bonly = [];
         for (let i = 0; i < b.length; i++) {
           var found2 = false;
@@ -671,21 +806,18 @@ function Calculator() {
           if (!found2) bonly.push(b[i]);
         }
         setOnlyB(bonly);
-        setNewOnlyB(bonly.toLocaleString('en-US'));
+        setNewOnlyB(bonly.toLocaleString("en-US"));
         setShowSolutionOnlyB(true);
-  
+
         setRelations(Math.pow(2, a.length * b.length));
         setShowSolutionRelations(true);
-
-      }
-      else{
+      } else {
         setShowModal(true);
       }
-      
     };
     return (
       <>
-      <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
           <Modal.Header>
             Please Enter all values to get Proper answer
           </Modal.Header>
@@ -940,7 +1072,7 @@ function Calculator() {
       n: n,
       r_: r,
     };
-    
+
     const insertValues2 = `${n}! / ${r}! (${n} - ${r})!`;
 
     const handleChange = (e) => {
@@ -961,35 +1093,29 @@ function Calculator() {
     }
     const calcResult = () => {
       if (choice === "Permutation") {
-        if(n !== null && r !== null){
-          if (n >= r)
-          {
-            setResult(factorial(n) / factorial(n - r));            
-            setShowSolution1(true);
-          }
-          else
-            alert(
-              "The value of n should not be less than r.Please enter valid values for n and r"
-            );
-        }      
-        else{
-          setShowModal(true);
-        } 
-        
-      } else if (choice === "Combination") {
-        if(n !== null && r !== null){
+        if (n !== null && r !== null) {
           if (n >= r) {
-            setResult(factorial(n) / (factorial(r) * factorial(n - r)));                        
-            setShowSolution2(true);
-          }
-          else
+            setResult(factorial(n) / factorial(n - r));
+            setShowSolution1(true);
+          } else
             alert(
               "The value of n should not be less than r.Please enter valid values for n and r"
             );
-        }
-        else{
+        } else {
           setShowModal(true);
-        }         
+        }
+      } else if (choice === "Combination") {
+        if (n !== null && r !== null) {
+          if (n >= r) {
+            setResult(factorial(n) / (factorial(r) * factorial(n - r)));
+            setShowSolution2(true);
+          } else
+            alert(
+              "The value of n should not be less than r.Please enter valid values for n and r"
+            );
+        } else {
+          setShowModal(true);
+        }
       }
     };
     useEffect(() => {
@@ -998,8 +1124,8 @@ function Calculator() {
     }, [choice]);
 
     return (
-      <>      
-      <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+      <>
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
           <Modal.Header>
             Please Enter all values to get Proper answer
           </Modal.Header>
@@ -1064,7 +1190,7 @@ function Calculator() {
             </Form.Group>
           ) : null}
 
-        {showSolution2 ? (
+          {showSolution2 ? (
             <Form.Group className="mb-3" controlId="acceleration">
               <Solution
                 givenValues={givenValues2}
@@ -1126,7 +1252,7 @@ function Calculator() {
       n: nth,
     };
     const insertValues2 = `${n} * ${fr} ^ (${nth}-1)`;
-    
+
     const givenSumValues1 = {
       first_term: n,
       d: fr,
@@ -1141,7 +1267,6 @@ function Calculator() {
     };
     const insertSumValues2 = `${n} * (${fr} * (${nth}-1) / (${fr} - 1))`;
 
-
     function handleChange(e) {
       reset();
       setChoice(e.target.value);
@@ -1149,26 +1274,23 @@ function Calculator() {
     }
     const calcResult = () => {
       let res, s;
-      
+
       if (choice === "AP") {
-        if(n !== null && fr !== null && nth !== null){          
+        if (n !== null && fr !== null && nth !== null) {
           res = Number(n) + Number(fr * (nth - 1));
           s = (nth / 2) * (Number(2 * n) + Number(fr * (nth - 1)));
           setShowSolution1(true);
           setShowSumSolution1(true);
-        }
-        else {
+        } else {
           setShowModal(true);
         }
-      } 
-      else if (choice === "GP") {
-        if(n !== null && fr !== null && nth !== null){
+      } else if (choice === "GP") {
+        if (n !== null && fr !== null && nth !== null) {
           res = Number(n) * Number(fr ** (nth - 1));
           s = (n * (fr ** nth - 1)) / (fr - 1);
           setShowSolution2(true);
           setShowSumSolution2(true);
-        }
-        else {
+        } else {
           setShowModal(true);
         }
       }
@@ -1198,25 +1320,25 @@ function Calculator() {
         return {
           name: "Geometric Progression",
           quantities: ["First Number", "Common ratio"],
-          formula:"a * r ^ (n-1)",
+          formula: "a * r ^ (n-1)",
         };
       }
     };
     return (
-      <>      
+      <>
         <Modal show={showModal} class="modal-dialog modal-dialog-centered">
-            <Modal.Header>
-              Please Enter all values to get Proper answer
-            </Modal.Header>
-            <Modal.Footer>
-              <Button
-                onClick={() => setShowModal(false)}
-                class="btn btn-primary btn-sm"
-              >
-                Close
-              </Button>
-            </Modal.Footer>
-          </Modal>
+          <Modal.Header>
+            Please Enter all values to get Proper answer
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowModal(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Form>
           {/* dropdown */}
           <Form.Group className="mb-4" controlId="choice">
@@ -1267,33 +1389,31 @@ function Calculator() {
             />
           </Form.Group>
 
-          
           {showSolution1 ? (
-                <Form.Group className="mb-3" controlId="acceleration">
-                  <Solution
-                    givenValues={givenValues1}
-                    formula={choiceData().formula}
-                    toFind={choiceData().name}
-                    insertValues={insertValues1}
-                    result={result}
-                    // constants={constants}
-                  />
-                </Form.Group>
-              ) : null}
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenValues1}
+                formula={choiceData().formula}
+                toFind={choiceData().name}
+                insertValues={insertValues1}
+                result={result}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
 
           {showSolution2 ? (
-                <Form.Group className="mb-3" controlId="acceleration">
-                  <Solution
-                    givenValues={givenValues2}
-                    formula={choiceData().formula}
-                    toFind={choiceData().name}
-                    insertValues={insertValues2}
-                    result={result}
-                    // constants={constants}
-                  />
-                </Form.Group>
-              ) : null}
-            
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenValues2}
+                formula={choiceData().formula}
+                toFind={choiceData().name}
+                insertValues={insertValues2}
+                result={result}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
 
           <Form.Group className="mb-4">
             <Form.Label>Number at {nth ? nth : "nth"} position</Form.Label>
@@ -1305,31 +1425,30 @@ function Calculator() {
           </Form.Group>
 
           {showSumSolution1 ? (
-                <Form.Group className="mb-3" controlId="acceleration">
-                  <Solution
-                    givenValues={givenSumValues1}
-                    formula= "n/2 (2a+(n−1)d)"
-                    toFind= "sum of numbers"
-                    insertValues={insertSumValues1}
-                    result={sum}
-                    // constants={constants}
-                  />
-                </Form.Group>
-              ) : null}
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenSumValues1}
+                formula="n/2 (2a+(n−1)d)"
+                toFind="sum of numbers"
+                insertValues={insertSumValues1}
+                result={sum}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
 
           {showSumSolution2 ? (
-                <Form.Group className="mb-3" controlId="acceleration">
-                  <Solution
-                    givenValues={givenSumValues2}
-                    formula= "a(rn−1)r−1"
-                    toFind= "sum of numbers"
-                    insertValues={insertSumValues2}
-                    result={sum}
-                    // constants={constants}
-                  />
-                </Form.Group>
-              ) : null}
-
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenSumValues2}
+                formula="a(rn−1)r−1"
+                toFind="sum of numbers"
+                insertValues={insertSumValues2}
+                result={sum}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
 
           <Form.Group className="mb-4">
             <Form.Label>
@@ -1367,6 +1486,7 @@ function Calculator() {
     });
     const [x, setX] = useState(null);
     const [n, setN] = useState(null);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
       if (choice === "Power") {
@@ -1397,22 +1517,29 @@ function Calculator() {
     const calcResult = () => {
       let res = 1;
       var y;
-      if (choice === "Power"){
-           res = Math.pow(x, n);
-           var x_ = `${x} `
-            y= x_.repeat(n);
-            y= y.split(" ").join(" x ");
-            y= y.slice(0,-2);
-            // console.log(y)
-            y= `${y} = ${res}`
-      }
-      else if (choice === "SquareRoot"){
+      if (choice === "Power" && x !== null && n !== null) {
+        res = Math.pow(x, n);
+        var x_ = `${x} `;
+        y = x_.repeat(n);
+        y = y.split(" ").join(" x ");
+        y = y.slice(0, -2);
+        // console.log(y)
+        y = `${y} = ${res}`;
+      } else if (choice === "Power" && (x === null || n === null)) {
+        setShowModal(true);
+        return;
+      } else if (choice === "SquareRoot" && x !== null) {
         res = Math.sqrt(x);
-        y= `b  x b = ${x} \n Therefore, b =${res}`
-      } 
-      else {
+        y = `b  x b = ${x} \n Therefore, b =${res}`;
+      } else if (choice === "SquareRoot" && x === null) {
+        setShowModal(true);
+        return;
+      } else if (choice === "CubeRoot" && x === null) {
+        setShowModal(true);
+        return;
+      } else {
         res = Math.cbrt(x);
-        y = `b  x b x b = ${x} \n Therefore, b =${res}`
+        y = `b  x b x b = ${x} \n Therefore, b =${res}`;
       }
 
       setResult(res);
@@ -1422,19 +1549,34 @@ function Calculator() {
     const handleChange = (e) => {
       reset();
       setResult(null);
-      setExplanation(null)
+      setExplanation(null);
       setChoice(e.target.value);
+      if (e.target.value === "Power") setN(null);
     };
 
     function reset() {
       setResult(null);
-      setExplanation(null)
+      setExplanation(null);
       setX(null);
       if (choice === "Power") setN(null);
     }
 
     return (
       <>
+        {/* error modal for incomplete values */}
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+          <Modal.Header>
+            Please Enter all values to get Proper answer
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowModal(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Form>
           <Form.Group className="mb-4" controlId="choice">
             <Form.Label>Select the type of calculation</Form.Label>
@@ -1460,9 +1602,9 @@ function Calculator() {
             <Form.Label>{choiceData.quantities[0]}</Form.Label>
             <Form.Control
               onChange={(e) => {
-                setResult(null)
-                setExplanation(null)
-                setX(e.target.value)
+                setResult(null);
+                setExplanation(null);
+                setX(e.target.value);
               }}
               type="number"
               placeholder={"Enter the Base"}
@@ -1473,9 +1615,9 @@ function Calculator() {
             <Form.Label>{choiceData.quantities[1]}</Form.Label>
             <Form.Control
               onChange={(e) => {
-                setResult(null)
-                setExplanation(null)
-                setN(e.target.value)
+                setResult(null);
+                setExplanation(null);
+                setN(e.target.value);
               }}
               type="number"
               placeholder={"Enter the Exponent"}
@@ -1485,29 +1627,35 @@ function Calculator() {
           </Form.Group>
 
           <Form.Group className="mb-4">
-          <Form.Label>Result</Form.Label>
+            <Form.Label>Result</Form.Label>
             {
-                  <div className="binomial_result">
-                    {result === null  ? (
-                      <p>
-                        <strong>Result</strong>
-                      </p>
-                    ) : (
-                      <p>
-                        {" "}
-                        <strong>
-                          {" "}
-                          {choice ==="Power" ? <><span>{x}</span><sup>{n}</sup></> : null }
-                          {choice ==="SquareRoot" ? <span>&radic;{x}</span>  : null }
-                          {choice ==="CubeRoot" ?<span>&#8731;{x} </span> : null }= {result}
-                        </strong>{" "}
-
-                         <br />
-                         <strong>Explanation: {explanation}</strong> 
-                      </p>
-                    )}
-                  </div>
-                }
+              <div className="binomial_result">
+                {result === null ? (
+                  <p>
+                    <strong>Result</strong>
+                  </p>
+                ) : (
+                  <p>
+                    {" "}
+                    <strong>
+                      {" "}
+                      {choice === "Power" ? (
+                        <>
+                          <span>{x}</span>
+                          <sup>{n}</sup>
+                        </>
+                      ) : null}
+                      {choice === "SquareRoot" ? <span>&radic;{x}</span> : null}
+                      {choice === "CubeRoot" ? (
+                        <span>&#8731;{x} </span>
+                      ) : null}= {result}
+                    </strong>{" "}
+                    <br />
+                    <strong>Explanation: {explanation}</strong>
+                  </p>
+                )}
+              </div>
+            }
           </Form.Group>
         </Form>
         <div className="button-custom-grp">
@@ -1710,122 +1858,150 @@ function Calculator() {
       smallest: 0,
       mean: 0,
       median: 0,
-      mode: 0,
+      mode: [],
       stddeviation: "",
       variance: "",
     };
     const [number, setNum] = useState(null);
     const [statData, setStatData] = useState(statOBJ);
     const [newSort, setNewSort] = useState(null);
-   const [showSolutionSort, setShowSolutionSort] = useState(false);
-   const [showSolutionCount, setShowSolutionCount] = useState(false);
-   const [showSolutionSum, setShowSolutionSum] = useState(false);
-   const [showSolutionSmallest, setShowSolutionSmallest] = useState(false);
-   const [showSolutionLargest, setShowSolutionLargest] = useState(false);
-   const [showSolutionMean, setShowSolutionMean] = useState(false);
-   const [showSolutionMedian, setShowSolutionMedian] = useState(false);
-   const [showSolutionMode, setShowSolutionMode] = useState(false);
-   const [showSolutionStddeviation, setShowSolutionStddeviation] = useState(false);
-   const [showSolutionVariance, setShowSolutionVariance] = useState(false);
+    const [showSolutionSort, setShowSolutionSort] = useState(false);
+    const [showSolutionCount, setShowSolutionCount] = useState(false);
+    const [showSolutionSum, setShowSolutionSum] = useState(false);
+    const [showSolutionSmallest, setShowSolutionSmallest] = useState(false);
+    const [showSolutionLargest, setShowSolutionLargest] = useState(false);
+    const [showSolutionMean, setShowSolutionMean] = useState(false);
+    const [showSolutionMedian, setShowSolutionMedian] = useState(false);
+    const [newmode, setNewmode] = useState(null);
+    const [showSolutionMode, setShowSolutionMode] = useState(false);
+    const [showSolutionStddeviation, setShowSolutionStddeviation] =
+      useState(false);
+    const [showSolutionVariance, setShowSolutionVariance] = useState(false);
     const [showModal, setShowModal] = useState(false);
 
-    const givenValues={Numbers: number}
-    const insertValuesSort=`Ascending order of ${givenValues.Numbers}`;
-    const insertValuesCount=`Count number of ${givenValues.Numbers}`;
-    const insertValuesSum=`Sum of ${givenValues.Numbers}`;
-    const insertValuesSmallest=`Least item of ${givenValues.Numbers}`;
-    const insertValuesLargest=`Greatest item of ${givenValues.Numbers}`;
-    const insertValuesMean=`${statData.sum} / ${statData.count}`
-    const insertValuesMedian=`Item at position ${Math.floor(statData.count/2)+1}`
-    const insertValuesMode=`Items of ${givenValues.Numbers} that occurs frequently`;
-    const insertValuesStddeviation=`√ (Σ(x - ${statData.mean}) ²) / ${statData.count}`
-  
-    const insertValuesVariance=`(${statData.stddeviation}) ²`
-  
-    const calcStat = () => {if(number !== null){
-    numArr = number.split(/[\s,]+/);
-      numArr = numArr.sort();
-      statOBJ.sort = numArr; //sorted numbers
-      setNewSort(statOBJ.sort.toLocaleString('en-US'));
+    const givenValues = { Numbers: number };
+    const insertValuesSort = `Ascending order of ${givenValues.Numbers}`;
+    const insertValuesCount = `Count number of ${givenValues.Numbers}`;
+    const insertValuesSum = `Sum of ${givenValues.Numbers}`;
+    const insertValuesSmallest = `Least item of ${givenValues.Numbers}`;
+    const insertValuesLargest = `Greatest item of ${givenValues.Numbers}`;
+    const insertValuesMean = `${statData.sum} / ${statData.count}`;
+    const insertValuesMedian = `Item at position ${
+      Math.floor(statData.count / 2) + 1
+    }`;
+    const insertValuesMode = `Items of ${givenValues.Numbers} that occurs frequently`;
+    const insertValuesStddeviation = `√ (Σ(x - ${statData.mean}) ²) / ${statData.count}`;
 
-      setShowSolutionSort(true);
-      statOBJ.count = numArr.length; //Number of items
-      setShowSolutionCount(true);
-      statOBJ.smallest = numArr[1];
-      numArr.map((item, index) => {
-        statOBJ.sum += Number(item); //Sum of all items
-        return <></>;
-      });
-      setShowSolutionSum(true);
-      statOBJ.largest = numArr[statOBJ.count - 1]; //largest of all items
-      setShowSolutionLargest(true);
-      statOBJ.smallest = numArr[0]; //smalles of all items
-      setShowSolutionSmallest(true);
-      statOBJ.mean = (statOBJ.sum / statOBJ.count).toFixed(2); //mean or average of all
-      setShowSolutionMean(true);
-      let med = 0;
-      if (statOBJ.count % 2 === 0) {
-        med = statOBJ.count / 2;
-      } else {
-        med = (statOBJ.count + 1) / 2;
-      }
-      statOBJ.median = numArr[med - 1]; //median of all items
-      setShowSolutionMedian(true);
-      let repeatCount = 1;
-      let modeIndex = 0;
-      let maxRepeat = 0;
-      for (let i = 0; i < numArr.length; i++) {
-        if (numArr[i] === numArr[i + 1]) {
-          repeatCount = repeatCount + 1;
-          if (repeatCount > maxRepeat) {
-            maxRepeat = repeatCount;
-            modeIndex = i;
-          }
+    const insertValuesVariance = `(${statData.stddeviation}) ²`;
+
+    const calcStat = () => {
+      if (number != null) {
+        numArr = number.split(/[\s,]+/);
+        numArr.sort((a, b) => a - b);
+        console.log(numArr);
+        statOBJ.sort = numArr; //sorted numbers
+        setNewSort(statOBJ.sort.toLocaleString("en-US"));
+
+        setShowSolutionSort(true);
+        statOBJ.count = numArr.length; //Number of items
+        setShowSolutionCount(true);
+        statOBJ.smallest = numArr[1];
+        numArr.map((item, index) => {
+          statOBJ.sum += Number(item); //Sum of all items
+          return <></>;
+        });
+        setShowSolutionSum(true);
+        statOBJ.largest = numArr[statOBJ.count - 1]; //largest of all items
+        setShowSolutionLargest(true);
+        statOBJ.smallest = numArr[0]; //smalles of all items
+        setShowSolutionSmallest(true);
+        statOBJ.mean = (statOBJ.sum / statOBJ.count).toFixed(2); //mean or average of all
+        setShowSolutionMean(true);
+        let med = 0;
+        if (statOBJ.count % 2 === 0) {
+          med = statOBJ.count / 2;
         } else {
-          repeatCount = 0;
+          med = (statOBJ.count + 1) / 2;
         }
-      }
-      statOBJ.mode = numArr[modeIndex]; //mode of all items
-      setShowSolutionMode(true);
+        statOBJ.median = numArr[med - 1]; //median of all items
+        setShowSolutionMedian(true);
 
-      let stddevnum = 0;
-      for (let i = 0; i < numArr.length; i++) {
-        stddevnum += (numArr[i] - statOBJ.mean) ** 2;
-      }
-      if (stddevnum > 0) {
-        statOBJ.stddeviation = Math.sqrt(stddevnum / numArr.length);
-        statOBJ.variance = stddevnum / numArr.length;
+        {
+          {
+            console.log(mode(numArr));
+          }
+        }
+
+        function mode(numArr) {
+          let modes = [],
+            count = [],
+            i,
+            number,
+            maxIndex = 0;
+
+          for (i = 0; i < numArr.length; i += 1) {
+            number = numArr[i];
+            count[number] = (count[number] || 0) + 1;
+            if (count[number] > maxIndex) {
+              maxIndex = count[number];
+            }
+          }
+
+          for (i in count)
+            if (count.hasOwnProperty(i)) {
+              if (count[i] === maxIndex) {
+                modes.push(Number(i));
+              }
+            }
+
+          return modes;
+        }
+
+        statOBJ.mode = mode(numArr); //mode of all items
+        setNewmode(statOBJ.mode.toLocaleString("en-US"));
+        setShowSolutionMode(true);
+        let stddevnum = 0;
+
+        for (let i = 0; i < numArr.length; i++) {
+          stddevnum += Math.pow(numArr[i] - statOBJ.mean, 2);
+        }
+        // console.log(stddevnum);
+        if (stddevnum > 0) {
+          statOBJ.stddeviation = Math.sqrt(stddevnum / (numArr.length - 1));
+          statOBJ.variance = Math.pow(statOBJ.stddeviation, 2);
+          // console.log(statOBJ.stddeviation);
+          // console.log(statOBJ.variance);
+        } else {
+          statOBJ.stddeviation = Math.sqrt((-1 * stddevnum) / numArr.length);
+
+          statOBJ.variance = (-1 * stddevnum) / numArr.length;
+        }
+        setShowSolutionStddeviation(true);
+        setShowSolutionVariance(true);
+        setStatData(statOBJ);
       } else {
-        statOBJ.stddeviation = Math.sqrt((-1 * stddevnum) / numArr.length);
-  
-        statOBJ.variance = (-1 * stddevnum) / numArr.length;
-        
-      }      setShowSolutionStddeviation(true);
-      setShowSolutionVariance(true);
-       setStatData(statOBJ);
-}
-      else
-     { setShowModal(true);
-    }
+        setShowModal(true);
+      }
     };
 
     const resetStat = () => {
       setNum(null);
     };
     return (
-      <><Modal show={showModal} class="modal-dialog modal-dialog-centered">
-      <Modal.Header>
-        Please enter the numbers to get correct answer.
-      </Modal.Header>
-      <Modal.Footer>
-        <Button
-          onClick={() => setShowModal(false)}
-          class="btn btn-primary btn-sm"
-        >
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal>
+      <>
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+          <Modal.Header>
+            Please enter the numbers to get correct answer.
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowModal(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Form>
           <Form.Group className="mb-4" controlId="text">
             <Form.Text className="text">
@@ -1997,7 +2173,7 @@ function Calculator() {
                 formula="Item that appears most frequently"
                 toFind="Mode"
                 insertValues={insertValuesMode}
-                result={statData.mode}
+                result={newmode}
                 // constants={constants}
               />
             </Form.Group>
@@ -2064,7 +2240,6 @@ function Calculator() {
             variant="primary"
             onClick={() => {
               calcStat();
-            
             }}
           >
             Calculate
@@ -2597,7 +2772,7 @@ function Calculator() {
       </>
     );
   };
-  
+
   //Quadratic Equation Calculator
   const QuadraticEquation = () => {
     const [a, seta] = useState(null);
@@ -2613,21 +2788,31 @@ function Calculator() {
     const [showSolutionEquation, setShowSolutionEquation] = useState(false);
 
     const givenValues = {
-      a_:a,
-      b:b,
-      c:c,     
+      a_: a,
+      b: b,
+      c: c,
     };
 
-    const insertValues = `(${b<0? -b : `-${b}`} + √${b}² - (4 * ${a>0 ?a:`(${a})`} * ${c>0 ?c:`(${c})`})) / 2 * ${a>0 ?a:`(${a})`} and (${b<0? -b : `-${b}`} - √${b}² - (4 * ${a>0 ?a:`(${a})`} * ${c>0 ?c:`(${c})`})) / 2 * ${a>0 ?a:`(${a})`}`;
+    const insertValues = `(${b < 0 ? -b : `-${b}`} + √${b}² - (4 * ${
+      a > 0 ? a : `(${a})`
+    } * ${c > 0 ? c : `(${c})`})) / 2 * ${a > 0 ? a : `(${a})`} and (${
+      b < 0 ? -b : `-${b}`
+    } - √${b}² - (4 * ${a > 0 ? a : `(${a})`} * ${
+      c > 0 ? c : `(${c})`
+    })) / 2 * ${a > 0 ? a : `(${a})`}`;
 
-    const insertValuesImaginary = `√${b}² - (4 * ${a>0 ?a:`(${a})`} * ${c>0 ?c:`(${c})`}) < 0`;
+    const insertValuesImaginary = `√${b}² - (4 * ${a > 0 ? a : `(${a})`} * ${
+      c > 0 ? c : `(${c})`
+    }) < 0`;
 
     const givenValuesEquation = {
-      root1:x1,
-      root2:x2,    
+      root1: x1,
+      root2: x2,
     };
 
-    const insertValuesEquation = `x² + (${x1>0 ?x1:`(${x1})`} + ${x2>0 ?x2:`(${x2})`})x + (${x1>0 ?x1:`(${x1})`} * ${x2>0 ?x2:`(${x2})`})`;
+    const insertValuesEquation = `x² + (${x1 > 0 ? x1 : `(${x1})`} + ${
+      x2 > 0 ? x2 : `(${x2})`
+    })x + (${x1 > 0 ? x1 : `(${x1})`} * ${x2 > 0 ? x2 : `(${x2})`})`;
 
     const reset = () => {
       seta(null);
@@ -2650,7 +2835,7 @@ function Calculator() {
       return 1;
     }
     const calcQuadratic = () => {
-      if(a !== null && b !== null && c !== null){
+      if (a !== null && b !== null && c !== null) {
         if (a === 0) {
           setResult("Value of a cannot be zero.");
           return;
@@ -2658,10 +2843,14 @@ function Calculator() {
         const isValid = discriminant(a, b, c);
         console.log(isValid);
         if (!isValid) {
+          let d = -b / (2 * a);
+          let e = Math.sqrt(Math.abs(b * b - 4 * a * c)) / (2 * a);
+          let x1 = d + " + " + e + " i";
+          let x2 = d + " - " + e + " i";
           setShowSolutionImaginary(true);
-          setResult("Roots are imaginary.");
-        } 
-        else {
+          setShowSolution(false);
+          setResult("Complex roots are " + x1 + " and " + x2);
+        } else {
           let d = b * b - 4 * a * c;
           d = Math.sqrt(d);
           let x1 = (-b + d) / (2 * a);
@@ -2669,15 +2858,15 @@ function Calculator() {
           console.log(x1, x2);
           setResult("Roots are " + x1 + " and " + x2);
           setShowSolution(true);
+          setShowSolutionImaginary(false);
         }
-      } 
-      else{
+      } else {
         setShowModal(true);
-      }      
+      }
     };
 
     const generateEquation = () => {
-      if(x1 !== null && x2 !== null){
+      if (x1 !== null && x2 !== null) {
         let sum = parseFloat(x1) + parseFloat(x2);
         sum = sum * -1;
         let product = parseFloat(x1) * parseFloat(x2);
@@ -2691,15 +2880,14 @@ function Calculator() {
           product;
         setEquation("Equation for the provided roots is " + eq);
         setShowSolutionEquation(true);
-      }
-      else{
+      } else {
         setShowModal(true);
-      }       
+      }
     };
 
     return (
       <>
-      <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
           <Modal.Header>
             Please Enter all values to get Proper answer
           </Modal.Header>
@@ -2756,7 +2944,7 @@ function Calculator() {
               <Solution
                 givenValues={givenValues}
                 formula="(-b + √b²-4ac)/2a and (-b - √b²-4ac)/2a"
-                toFind="Roots of Quardratic Equation"
+                toFind="Roots of Quadratic Equation"
                 insertValues={insertValues}
                 result={result}
                 // constants={constants}
@@ -2769,7 +2957,7 @@ function Calculator() {
               <Solution
                 givenValues={givenValues}
                 formula="d = √b²-4ac"
-                toFind="Roots of Quardratic Equation"
+                toFind="Roots of Quadratic Equation"
                 insertValues={insertValuesImaginary}
                 result={result}
                 // constants={constants}
@@ -2806,7 +2994,7 @@ function Calculator() {
             <Form.Text className="text">
               <strong>
                 {" "}
-                Generate the quadraic equation by providing the roots.
+                Generate the quadratic equation by providing the roots.
               </strong>
               <br />
             </Form.Text>
@@ -2877,7 +3065,7 @@ function Calculator() {
       setSum(null);
     };
 
-    const calcBinomial = () =>{     
+    const calcBinomial = () => {
       let term = Math.pow(a, n);
       let results = [];
       results.push(term);
@@ -2890,7 +3078,7 @@ function Calculator() {
       setResult(results);
       setSum(sum1);
       // console.log(sum);
-    }
+    };
 
     // EVALUATING BINOMIAL EXPANSION FOR FOUR KNOWN VARIABLES
 
@@ -2911,9 +3099,9 @@ function Calculator() {
       setSum2(null);
     };
 
-    const calcBinomial2 = () =>{    
+    const calcBinomial2 = () => {
       let a = inputA * inputX;
-      let x = inputB * inputY ;
+      let x = inputB * inputY;
       let n = inputN * 1;
       let term = Math.pow(a, n);
       let results = [];
@@ -2927,8 +3115,7 @@ function Calculator() {
       setResult2(results);
       setSum2(sum1);
       // console.log(sum);
-    }
-
+    };
 
     const [xValue, setXValue] = useState(null);
     const [yValue, setYValue] = useState(null);
@@ -3032,10 +3219,10 @@ function Calculator() {
     }
 
     const calcBinomialExp = () => {
-        const answer = Binomial_Sigma(xValue, yValue, expo);
-        console.log(Binomial_Sigma(xValue, yValue, expo));
-        setResultExp(answer);
-        console.log(answer);
+      const answer = Binomial_Sigma(xValue, yValue, expo);
+      console.log(Binomial_Sigma(xValue, yValue, expo));
+      setResultExp(answer);
+      console.log(answer);
     };
 
     return (
@@ -3211,9 +3398,7 @@ function Calculator() {
           <br />
           <br />
           <br />
-
           {/* BINOMIAL EXPANSION OF FORM (ax +by)^n given values of a,b,x and y */}
-
           <div>
             <Form>
               <Form.Group className="mb-4" controlId="text">
@@ -3221,7 +3406,8 @@ function Calculator() {
                   <strong>
                     {" "}
                     To find the Binomial Expansion of the form (ax + by)
-                    <sup>n</sup> given the values of a, x, b and y. Enter the following values
+                    <sup>n</sup> given the values of a, x, b and y. Enter the
+                    following values
                   </strong>
                   <br />
                 </Form.Text>
@@ -3313,11 +3499,7 @@ function Calculator() {
                 Calculate
               </Button>
               &nbsp;&nbsp;&nbsp;
-              <Button
-                variant="dark"
-                onClick={() => reset2()}
-                type="reset"
-              >
+              <Button variant="dark" onClick={() => reset2()} type="reset">
                 Reset
               </Button>
             </div>
@@ -3488,96 +3670,584 @@ function Calculator() {
       setx(null);
       setp(null);
       setResult(null);
-      
-    }
+    };
 
     const calcresult = () => {
-      if(x >= -1 && x!==0  && p>=1){
-      setsum1(Math.pow((1 + x),p));
-      setsum2(1 + p*x);
-      if(sum1 >= sum2){
-         setResult(sum1 + ">=" + sum2);
-      }else{
-      setResult(sum1 + " Not greater than " + sum2);
+      if (x >= -1 && x !== 0 && p >= 1) {
+        setsum1(Math.pow(1 + x, p));
+        setsum2(1 + p * x);
+        if (sum1 >= sum2) {
+          setResult(sum1 + ">=" + sum2);
+        } else {
+          setResult(sum1 + " Not greater than " + sum2);
+        }
+      } else {
+        setResult(
+          sum1 +
+            " and " +
+            sum2 +
+            " has inappropriate values i.e x<-1 or x=0 or p<1"
+        );
       }
-      }else{
-        setResult(sum1 + " and " + sum2 + " has inappropriate values i.e x<-1 or x=0 or p<1");
-      }
-    }
+    };
 
     return (
       <div>
+        <div>
+          <Form>
+            <Form.Group className="mb-4" controlId="text">
+              <Form.Text className="text">
+                <strong>
+                  {" "}
+                  Enter x value and power in mathematical induction calculator
+                  to prove the Bernoulli's inequality for any function.
+                  Bernoulli's equation (1 + x)^p ≥ 1 + px
+                </strong>
+                <br />
+              </Form.Text>
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Label>Value of x for (1+x)^p.</Form.Label>
+              <Form.Control
+                onChange={(e) => setx(e.target.value)}
+                type="number"
+                placeholder={"Enter the value of x"}
+                value={x === null ? "" : x}
+              />
+            </Form.Group>
+            <Form.Group className="mb-4">
+              <Form.Label>Value of p for (1+x)^p.</Form.Label>
+              <Form.Control
+                onChange={(e) => setp(e.target.value)}
+                type="number"
+                placeholder={"Enter the value of p"}
+                value={p === null ? "" : p}
+              />
+            </Form.Group>
+          </Form>
+          <div className="button-custom-grp">
+            <Button variant="primary" onClick={calcresult}>
+              Calculate
+            </Button>
+            &nbsp;&nbsp;&nbsp;
+            <Button variant="dark" onClick={() => reset()} type="reset">
+              Reset
+            </Button>
+          </div>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>
+                Bernoulli's inequality for given value is :
+              </Form.Label>
+              {
+                <div className="binomial_result">
+                  <p>
+                    {" "}
+                    <strong>{result === null ? "Result" : result}</strong>{" "}
+                  </p>
+                </div>
+              }
+            </Form.Group>
+          </Form>
+        </div>
+      </div>
+    );
+  };
+
+  //Determinant Calculator
+  const determinantCalculator = () => {
+    const [x, setx] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [showError, setShowError] = useState(false);
+    const [value, setValue] = useState([[]]);
+    const [fractions, setFractions] = useState([[[]]]);
+    const [answer, setAnswer] = useState(null);
+    const [result, setResult] = useState(null);
+
+    // scrolls to apt postion whenever our result gets updates
+    useEffect(() => {
+      console.log(ref.current);
+      var element = ref.current;
+      var header = document.getElementById("targetElement");
+      console.log(header);
+      var elementPosition = element.getBoundingClientRect().top;
+      var offsetPosition = elementPosition + window.pageYOffset;
+      window.scrollTo({
+        top: offsetPosition,
+      });
+    }, [answer]);
+
+    // adds proper suffix (th, nd, rd, st) tp the numbers
+    const addSuffix = (number) => {
+      if (number >= 11 && number <= 19) {
+        return "th";
+      }
+
+      if (number % 10 == 1) {
+        return "st";
+      }
+
+      if (number % 10 == 2) {
+        return "nd";
+      }
+
+      if (number % 10 == 3) {
+        return "rd";
+      }
+
+      return "th";
+    };
+
+    //resets everything to original state
+    const reset = () => {
+      setx(null);
+      setAnswer(null);
+      setResult(null);
+    };
+
+    //function to find highest common factor
+    const hcf = (x, y) => {
+      if (x % y == 0) {
+        return y;
+      }
+
+      return hcf(y, x % y);
+    };
+
+    //calculates final result
+    const calculateResult = () => {
+      let dim = parseInt(x);
+      var isComplete = true;
+      var posSign = true;
+
+      //storing user input as fractions
+      const handleFractionChange = (row, column, num, denom) => {
+        let copy = [...fractions];
+        copy[row][column][0] = num;
+        copy[row][column][1] = denom;
+        setFractions(copy);
+      };
+
+      //main function responsible for finding determinant
+      const algorithm = () => {
+        let copy = [...fractions];
+        let ans = [];
+        let dim = parseInt(x);
+
+        //row operation between two rows, where num and den denote numerator and denominator of the number we wish to multiply with row r1
+        const rowOperation = (r1, r2, num, den) => {
+          for (var c = 0; c < dim; c++) {
+            if (copy[r1][c][0] === 0) {
+              continue;
+            }
+
+            var newNum1 = copy[r1][c][0] * num;
+            var newDen1 = copy[r1][c][1] * den;
+
+            var newNum2 = copy[r2][c][0] * newDen1;
+            var newDen = copy[r2][c][1] * newDen1;
+
+            newNum1 *= copy[r2][c][1];
+
+            var newNum = newNum2 - newNum1;
+            if (newNum == 0) {
+              newDen = 1;
+            } else {
+              var Hcf = hcf(newNum, newDen);
+              newNum /= Hcf;
+              newDen /= Hcf;
+            }
+
+            var neg = false;
+            if (newNum < 0 && newDen < 0) {
+            } else if (newNum < 0 || newDen < 0) {
+              neg = true;
+            }
+
+            newNum = Math.abs(newNum);
+            newDen = Math.abs(newDen);
+
+            if (neg) {
+              newNum *= -1;
+            }
+
+            copy[r2][c][0] = newNum;
+            copy[r2][c][1] = newDen;
+          }
+        };
+
+        //swaps row of matrix
+        const swapRow = (r1, r2) => {
+          let row1 = copy[r1];
+          copy[r1] = copy[r2];
+          copy[r2] = row1;
+        };
+
+        //converts our fraction array to UI of table
+        const converToTable = () => {
+          return (
+            <table>
+              <tbody>
+                {copy.map((row, idx) => (
+                  <tr>
+                    {idx == 0 && <td rowSpan={dim}> {posSign ? "+" : "-"}</td>}
+                    {row.map((val) => (
+                      <td>
+                        {val[1] == 1 ? (
+                          val[0]
+                        ) : (
+                          <>
+                            <sup>{val[0]}</sup>&frasl;<sub>{val[1]}</sub>
+                          </>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          );
+        };
+
+        ans.push(<h6>Given matrix </h6>);
+        ans.push(converToTable());
+        ans.push(<br />);
+
+        //main for loop calling different functions
+        for (let a = 0; a < dim; a++) {
+          const operations = [];
+          var swap = false;
+          var newRow = -1;
+          if (copy[a][a][0] === 0) {
+            for (let b = a + 1; b < dim; b++) {
+              if (copy[b][a][0] != 0) {
+                swap = true;
+                newRow = b;
+                break;
+              }
+            }
+          }
+
+          if (swap) {
+            swapRow(a, newRow);
+            ans.push(
+              <h6>
+                Swapping row {a + 1} with row {newRow + 1} and reversing the
+                sign of the determinant
+              </h6>
+            );
+            posSign = !posSign;
+            ans.push(converToTable());
+            ans.push(<br />);
+          }
+
+          var rowOps = false;
+
+          for (let c = a + 1; c < dim; c++) {
+            if (copy[c][a][0] != 0) {
+              rowOps = true;
+
+              // console.log(copy[c][a][0], copy[a][a][1]);
+              var num = copy[c][a][0] * copy[a][a][1];
+              var denom = copy[c][a][1] * copy[a][a][0];
+              var neg = false;
+              if (num < 0 && denom < 0) {
+              } else if (num < 0 || denom < 0) {
+                neg = true;
+              }
+
+              num = Math.abs(num);
+              denom = Math.abs(denom);
+              var HCF = hcf(denom, num);
+              denom /= HCF;
+              num /= HCF;
+
+              if (neg) {
+                num *= -1;
+              }
+              operations.push(
+                <>
+                  ⇒ R{c + 1} = R{c + 1} - R{a + 1} *{" "}
+                  {denom == 1 ? (
+                    num
+                  ) : (
+                    <>
+                      {" "}
+                      <sup>{num}</sup>&frasl;<sub>{denom}</sub>
+                    </>
+                  )}
+                </>
+              );
+              rowOperation(a, c, num, denom);
+            }
+          }
+
+          if (rowOps) {
+            var suffix = addSuffix(a + 1);
+            ans.push(
+              <h6>
+                Eliminate elements in the {a + 1}
+                {suffix} column under the {a + 1}
+                {suffix} element
+              </h6>
+            );
+            for (var op in operations) {
+              ans.push(operations[op]);
+              ans.push(<br />);
+            }
+
+            ans.push(converToTable());
+            ans.push(<br />);
+          }
+        }
+
+        //calculating final result
+        ans.push(<>⇒ Δ = {posSign ? "" : "-1 x "}</>);
+        var resNum = posSign ? 1 : -1;
+        var resDen = 1;
+
+        for (let a = 0; a < dim; a++) {
+          resNum *= copy[a][a][0];
+          resDen *= copy[a][a][1];
+          ans.push(
+            <>
+              {copy[a][a][1] == 1 ? (
+                copy[a][a][0]
+              ) : (
+                <>
+                  {" "}
+                  <sup>{copy[a][a][0]}</sup>&frasl;<sub>{copy[a][a][1]}</sub>
+                </>
+              )}
+            </>
+          );
+          if (a != dim - 1) {
+            ans.push(<> x </>);
+          }
+        }
+        ans.push(<br />);
+        ans.push(<>⇒ Δ = {resNum / resDen}</>);
+        setResult(resNum / resDen);
+        setAnswer(ans);
+      };
+
+      //checking if all inputs are set, and calling relevant functions
+      for (var i = 0; i < dim; i++) {
+        for (var j = 0; j < dim; j++) {
+          if (value[i][j] === null) {
+            isComplete = false;
+            break;
+          }
+
+          var n = value[i][j].split(".");
+          var denominator = n.length == 1 ? 1 : Math.pow(10, n[1].length);
+          var numerator =
+            n.length == 1 ? parseInt(n[0]) : parseInt(n[0] + n[1]);
+          if (numerator == 0) {
+            denominator = 1;
+            numerator = 0;
+          } else {
+            var HCF = hcf(denominator, numerator);
+            denominator /= HCF;
+            numerator /= HCF;
+          }
+
+          handleFractionChange(i, j, numerator, denominator);
+        }
+      }
+
+      if (!isComplete) {
+        setShowError(true);
+        return;
+      }
+
+      algorithm();
+      setShowModal(false);
+    };
+
+    //initialisation wrt to dimension added by user
+    const setMatrix = () => {
+      if (x == null || x === 0) {
+        setShowError(true);
+        return;
+      }
+
+      let dim = parseInt(x);
+      let board = Array(dim)
+        .fill(0)
+        .map((row) => new Array(dim).fill(null));
+      setValue(board);
+      let fracBoard = Array(dim)
+        .fill(0)
+        .map((row) =>
+          new Array(dim).fill(0).map((r) => new Array(2).fill(null))
+        );
+      setFractions(fracBoard);
+      setShowModal(true);
+    };
+
+    //creating table displayed to user to enter values
+    const makeTable = () => {
+      const handleChange = (row, column, event) => {
+        let copy = [...value];
+        copy[row][column] = event.target.value;
+        setValue(copy);
+      };
+
+      return (
+        <>
+          <Modal.Body>
+            <center>
+              <table>
+                <tbody>
+                  {value.map((field, i) => (
+                    <tr>
+                      {field.map((col, j) => (
+                        <td>
+                          <Form>
+                            <Form.Control
+                              onChange={(e) => {
+                                handleChange(i, j, e);
+                              }}
+                              type="number"
+                              placeholder={"Enter value"}
+                              value={value[i][j] === null ? "" : value[i][j]}
+                            />
+                          </Form>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </center>
+          </Modal.Body>
+          <Modal.Footer>
+            <center>
+              <div
+                style={{
+                  display: "flex",
+                }}
+              >
+                <Button variant="primary" onClick={calculateResult}>
+                  Calculate
+                </Button>
+                &nbsp;&nbsp;&nbsp;
+                <Button
+                  variant="dark"
+                  onClick={() => {
+                    setShowModal(false);
+                  }}
+                  type="reset"
+                >
+                  Close
+                </Button>
+              </div>
+            </center>
+          </Modal.Footer>
+        </>
+      );
+    };
+
+    //main UI component
+    return (
       <div>
+        <Modal show={showError} class="modal-dialog modal-dialog-centered">
+          <Modal.Header>
+            Please Enter all values to get Proper answer
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowError(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        <Modal
+          dialogClassName="myModal"
+          show={showModal}
+          class="modal-dialog modal-dialog-centered"
+          aria-labelledby="contained-modal-title-vcenter"
+          onHide={() => {
+            setShowModal(false);
+          }}
+          backdrop="static"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title style={{ minWidth: "80vw", textAlign: "center" }}>
+              Set Matrix
+            </Modal.Title>
+          </Modal.Header>
+          {showModal && makeTable()}
+        </Modal>
         <Form>
           <Form.Group className="mb-4" controlId="text">
             <Form.Text className="text">
               <strong>
                 {" "}
-                Enter x value and power in mathematical induction calculator to prove the Bernoulli's inequality for any function.
-                Bernoulli's equation (1 + x)^p ≥ 1 + px
+                Enter dimension of square matrix, and then set the matrix to
+                calculate its determinant.
               </strong>
               <br />
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-4">
-            <Form.Label>
-              Value of x for (1+x)^p.
-            </Form.Label>
+            <Form.Label>Enter dimension of the matrix</Form.Label>
             <Form.Control
-              onChange={(e) => setx(e.target.value)}
-              type="number"
-              placeholder={"Enter the value of x"}
+              onChange={(e) => {
+                if (e.target.value == "" || e.target.value == "0") {
+                  setx(null);
+                } else {
+                  var isNumber = true;
+                  for (var ch in e.target.value) {
+                    if (e.target.value[ch] < "0" || e.target.value[ch] > "9") {
+                      isNumber = false;
+                      break;
+                    }
+                  }
+                  if (isNumber) {
+                    setx(e.target.value);
+                  }
+                }
+              }}
+              placeholder={"Enter dimension"}
+              min="0"
               value={x === null ? "" : x}
             />
           </Form.Group>
-          <Form.Group className="mb-4">
-            <Form.Label>
-              Value of p for (1+x)^p.
-            </Form.Label>
-            <Form.Control
-              onChange={(e) => setp(e.target.value)}
-              type="number"
-              placeholder={"Enter the value of p"}
-              value={p === null ? "" : p}
-            />
-          </Form.Group>
-          </Form>
-          <div className="button-custom-grp">
-              <Button variant="primary" onClick={calcresult}>
-                Calculate
-              </Button>
-              &nbsp;&nbsp;&nbsp;
-              <Button
-                variant="dark"
-                onClick={() => reset()}
-                type="reset"
-              >
-                Reset
-              </Button>
-            </div>
-            <Form>
-            <Form.Group className="mb-3">
-                <Form.Label>
-                Bernoulli's inequality for given value is :
-                </Form.Label>
-                {
-                  <div className="binomial_result">
-                    <p>
-                      {" "}
-                      <strong>
-                        {result === null ? "Result" : result}
-                      </strong>{" "}
-                    </p>
-                  </div>
-                }
-              </Form.Group>
-            </Form>
-      </div>
+        </Form>
+        <div className="button-custom-grp">
+          <Button variant="primary" onClick={setMatrix}>
+            Set Matrix
+          </Button>
+          &nbsp;&nbsp;&nbsp;
+          <Button variant="dark" onClick={() => reset()} type="reset">
+            Reset
+          </Button>
+        </div>
+        <div ref={ref}>
+          {answer != null ? (
+            <>
+              <br />
+              <br />
+              <h3>Solution</h3>
+              <br />
+              <center>
+                <h4>⇒ Δ = {result}</h4>
+                <br />
+                <br />
+                {answer}
+              </center>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
-  
   };
-
 
   //adding the calculators togather
   function calC(key) {
@@ -3612,6 +4282,9 @@ function Calculator() {
         break;
       case "Mathematical Induction":
         currentCall = MathematicalInduction();
+        break;
+      case "Determinants":
+        currentCall = determinantCalculator();
         break;
       default:
         break;

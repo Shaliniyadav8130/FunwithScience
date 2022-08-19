@@ -31,6 +31,7 @@ export const SI = {
   "Gravitational Force": " Newton",
   area:" m²","Area":" m²","Area Expansion":" m²","Area1": "m²","Area2": "m²",
   Volume: " m³","Volume Expansion":" m³","volume": " m³",
+  viscosity:"pascal-second", flowrate:" m³/s", radius:"m", pressure_difference:"pascal",
   displacement: " m",length:"m",width:"m","Final Length":" mm","Length Expansion":" m","SHM":"m",
   angle: "°","Θ":"°",Theta:"°","Angle": "°","theta":"°","Brewster's angle" :"°",
   distance:" m",Radius:" m",R:" m",s:" m",r1:" m",r2:" m",H:" m","Distance":" m",λ:"m",Length: " m","Relative Length": "m","Wave Length": "m","Half_Length":" m","Image_Distance": " m","Object_Distance":" m","Focal Length":" m","Focal_Length":" m","Change_Length":" m","Change_Volume":" m³",
@@ -77,10 +78,13 @@ export const SI = {
   'Final Height (h₂)':"m",
   k:"N/m",
   Density:"kg m⁻³",
+  "Density ρ": "kg m⁻³",
   Height1:"m",
   Height2:"m",
   Pressure1:"Pascal",
   Pressure2:"Pascal",
   Gravity:"m/s²",
-  Rateofdeformation: ""
+  Rateofdeformation: "",
+  "Angle between polarizer and analyzer (θ)" : "°",
+  "Final Intensity I₁" : "cd", I0:"cd", I1:"cd"
 };

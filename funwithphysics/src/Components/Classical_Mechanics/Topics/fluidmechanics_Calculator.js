@@ -20,7 +20,7 @@ function FluidCalculator() {
                      A fluid's density is defined as its mass per unit volume.`,
       formula: "ρ = m/V",
       process:
-        "In general, liquids are less dense than solids and gases are less dense than liquids. This is due to the fact that solids have densely packed particles, liquids are materials where particles can slide around one another, and gases have particles that are free to move all over the place. Density is denoted by symbol ρ (rho) and the unit of mass density is (kg/m3).",
+        "In general, liquids are less dense than solids and gases are less dense than liquids. This is due to the fact that solids have densely packed particles, liquids are materials where particles can slide around one another, and gases have particles that are free to move all over the place. Density is denoted by symbol ρ (rho) and the unit of mass density is (kg/m3). It is calculated by mass(m) upon volume(V).",
       siunit: "kg m⁻³",
       dimension: "M L⁻³",
     },
@@ -88,38 +88,101 @@ function FluidCalculator() {
     const [result, setResult] = useState(null);
     const [mass, setMass] = useState(null);
     const [vol, setVol] = useState(null);
+    const [showSolution, setShowSolution] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
+    const roundToTwo = (num) => {
+      return +(Math.round(num + "e+2") + "e-2");
+    }
+
+    const givenValues = {
+      mass: mass,
+      volume: vol,
+    };
+
+    const insertValues = `${mass}/${vol}`;
 
     const handleClick = () => {
-      let res = mass / vol;
-      setResult(res);
+      setResult(null);
+      setShowSolution(false);
+      if (mass !== null && vol !== null) {
+        if(mass < 0 || vol < 0){
+          alert(
+            "Please Enter valid values for Mass and Volume."
+          );
+        }
+        else{
+          let res = mass / vol;
+          setShowSolution(true);
+          setResult(roundToTwo(res));
+        }
+      } else {
+        setShowModal(true);
+      }      
     };
 
     const handleReset = () => {
       setResult(null);
       setMass(null);
       setVol(null);
+      setShowSolution(false);
     };
 
     return (
       <React.Fragment>
         {/* <Navbar/> */}
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+          <Modal.Header>
+            Please Enter all values to get Proper answer
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowModal(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Form>
           <Form.Group className="mb-3" controlId="mass">
             <Form.Label> Mass (in kgs)</Form.Label>
             <Form.Control
-              onChange={(e) => setMass(e.target.value)}
+              onChange={(e) => {
+                setMass(e.target.value);
+                setResult(null);
+                setShowSolution(false);
+              }}
               type="number"
               placeholder="Enter mass of the object"
+              value={mass === null ? "" : mass}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="volume">
             <Form.Label> Volume (in m³)</Form.Label>
             <Form.Control
-              onChange={(e) => setVol(e.target.value)}
+              onChange={(e) => {
+                setVol(e.target.value)
+                setResult(null);
+                setShowSolution(false);
+              }}
               type="number"
               placeholder="Enter volume of the object"
+              value={vol === null ? "" : vol}
             />
           </Form.Group>
+          {showSolution ? (
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenValues}
+                formula="m/V"
+                toFind="Density ρ"
+                insertValues={insertValues}
+                result={result}
+              />
+            </Form.Group>
+          ) : null}
+
           <Form.Group className="mb-3" controlId="density">
             <Form.Label>Density</Form.Label>
             <Form.Control
@@ -676,6 +739,23 @@ function FluidCalculator() {
     const [pressurediff, setPressurediff] = useState(null);
     const [choice, setChoice] = useState("pressure");
     const [pi, setPi] = useState(Math.PI);
+    const [showModal, setShowModal] = useState(false);
+    const [showSolutionPressure, setShowSolutionPressure] = useState(false);
+    const [showSolutionFlowrate, setShowSolutionFlowrate] = useState(false);
+    const givenValuesPressure = {
+      viscosity: viscosity,
+      length: length,
+      flowrate: flowrate,
+      radius: radius,
+    };
+    const givenValuesFlowrate = {
+      viscosity: viscosity,
+      length: length,
+      pressure_difference: pressurediff,
+      radius: radius,
+    };
+    const insertValuesPressure = `(8* ${viscosity} * ${length}*${flowrate})/ π* ${radius}⁴`;
+    const insertValuesFlowrate = `(${pressurediff} *π *${radius}⁴)/ 8 * ${viscosity}* ${length}`;
 
     function handleChange(e) {
       setChoice(e.target.value);
@@ -685,12 +765,37 @@ function FluidCalculator() {
     const calcResult = () => {
       let res;
       if (choice === "pressure") {
-        res =
-          (8 * viscosity * length * flowrate) / (Math.PI * Math.pow(radius, 4));
+        if (
+          viscosity === null ||
+          length === null ||
+          flowrate === null ||
+          radius === null
+        ) {
+          setShowModal(true);
+        } else {
+          res =
+            (8 * viscosity * length * flowrate) /
+              (Math.PI * Math.pow(radius, 4)) +
+            " pascal";
+          setShowSolutionPressure(true);
+          setShowSolutionFlowrate(false);
+        }
       } else if (choice === "flowrate") {
-        res =
-          (pressurediff * Math.PI * Math.pow(radius, 4)) /
-          (8 * viscosity * length);
+        if (
+          viscosity === null ||
+          length === null ||
+          pressurediff === null ||
+          radius === null
+        ) {
+          setShowModal(true);
+        } else {
+          res =
+            (pressurediff * Math.PI * Math.pow(radius, 4)) /
+              (8 * viscosity * length) +
+            " m³/s";
+          setShowSolutionFlowrate(true);
+          setShowSolutionPressure(false);
+        }
       }
       setResult(res);
     };
@@ -702,13 +807,15 @@ function FluidCalculator() {
       setFlowrate(null);
       setRadius(null);
       setPressurediff(null);
+      setShowSolutionFlowrate(false);
+      setShowSolutionPressure(false);
     }
 
     const choiceData = () => {
       if (choice === "pressure")
         return {
           name: "Pressure",
-          mainunit: "pascal",
+          mainunit: " ",
           quantities: [
             "Viscosity of fluid",
             "Length of pipe",
@@ -723,7 +830,7 @@ function FluidCalculator() {
       else if (choice === "flowrate")
         return {
           name: "Volumetric flow Rate",
-          mainunit: "m³/s",
+          mainunit: " ",
           quantities: [
             "Viscosity of fluid",
             "Length of pipe",
@@ -739,6 +846,19 @@ function FluidCalculator() {
 
     return (
       <>
+        <Modal show={showModal} class="modal-dialog modal-dialog-centered">
+          <Modal.Header>
+            Please enter the numbers to get correct answer.
+          </Modal.Header>
+          <Modal.Footer>
+            <Button
+              onClick={() => setShowModal(false)}
+              class="btn btn-primary btn-sm"
+            >
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
         <Form>
           {/* dropdown */}
           <Form.Group className="mb-4" controlId="choice">
@@ -808,17 +928,35 @@ function FluidCalculator() {
             <Form.Label>{choiceData().quantities[4]}</Form.Label>
             <Form.Control
               onChange={(e) => choiceData().setters[4](e.target.value)}
+              readOnly
               type="number"
-              placeholder={
-                choiceData().subunits[4] === "NaN"
-                  ? "No Unit"
-                  : "Enter in " + choiceData().subunits[4]
-              }
-              readOnly={
-                choiceData().getters[4] === null ? "" : choiceData().getters[4]
-              }
+              placeholder={choiceData().getters[4]}
             />
           </Form.Group>
+          {showSolutionPressure ? (
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenValuesPressure}
+                formula="Δp = 8μLQ/πR⁴"
+                toFind="Pressure Difference"
+                insertValues={insertValuesPressure}
+                result={result}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
+          {showSolutionFlowrate ? (
+            <Form.Group className="mb-3" controlId="acceleration">
+              <Solution
+                givenValues={givenValuesFlowrate}
+                formula="Q =ΔpπR⁴/8μL"
+                toFind="Volumetric Flow Rate"
+                insertValues={insertValuesFlowrate}
+                result={result}
+                // constants={constants}
+              />
+            </Form.Group>
+          ) : null}
           <Form.Group className="mb-4">
             <Form.Control
               readOnly
@@ -862,18 +1000,24 @@ function FluidCalculator() {
     const calcResult = () => {
       let res;
       if (choice === "pressure") {
-
-        if (density !== "" && velocity1 !== "" && velocity2 !== "" && height1 !== "" && height2 !== "" && gravity !== "") {
+        if (
+          density !== "" &&
+          velocity1 !== "" &&
+          velocity2 !== "" &&
+          height1 !== "" &&
+          height2 !== "" &&
+          gravity !== ""
+        ) {
           let r1 = 0.5 * density * velocity1 * velocity1;
           let r2 = density * gravity * height1;
           let r3 = 0.5 * density * velocity2 * velocity2;
           let r4 = density * gravity * height2;
           res =
-          parseFloat(pressure1) +
-          parseFloat(r1) +
-          parseFloat(r2) -
-          parseFloat(r3) -
-          parseFloat(r4);
+            parseFloat(pressure1) +
+            parseFloat(r1) +
+            parseFloat(r2) -
+            parseFloat(r3) -
+            parseFloat(r4);
           setShowSolution(true);
           setResult(res);
         } else {
@@ -881,24 +1025,37 @@ function FluidCalculator() {
         }
       }
       if (choice === "height") {
-
-          if (density !== "" && velocity1 !== "" && velocity2 !== "" && pressure2 !== "" && pressure1 !== "" && gravity !== "") {
-            let r1 = (pressure1 - pressure2) / (density * gravity);
-            let r2 = (0.5 * velocity1 * velocity1) / gravity;
-            let r3 = (0.5 * velocity2 * velocity2) / gravity;
-            res =
-              parseFloat(r1) +
-              parseFloat(r2) +
-              parseFloat(height1) -
-              parseFloat(r3);
-            setShowSolution(true);
-            setResult(res);
-          } else {
-            setShowModal(true);
-          }
+        if (
+          density !== "" &&
+          velocity1 !== "" &&
+          velocity2 !== "" &&
+          pressure2 !== "" &&
+          pressure1 !== "" &&
+          gravity !== ""
+        ) {
+          let r1 = (pressure1 - pressure2) / (density * gravity);
+          let r2 = (0.5 * velocity1 * velocity1) / gravity;
+          let r3 = (0.5 * velocity2 * velocity2) / gravity;
+          res =
+            parseFloat(r1) +
+            parseFloat(r2) +
+            parseFloat(height1) -
+            parseFloat(r3);
+          setShowSolution(true);
+          setResult(res);
+        } else {
+          setShowModal(true);
+        }
       }
       if (choice === "velocity") {
-        if (density !== "" && velocity1 !== "" && height2 !== "" && pressure2 !== "" && pressure1 !== "" && gravity !== "") {
+        if (
+          density !== "" &&
+          velocity1 !== "" &&
+          height2 !== "" &&
+          pressure2 !== "" &&
+          pressure1 !== "" &&
+          gravity !== ""
+        ) {
           let r1 = (2 * (pressure1 - pressure2)) / density;
           let r2 = 2 * gravity * (height1 - height2);
           let r3 = velocity1 * velocity1;
@@ -910,7 +1067,6 @@ function FluidCalculator() {
           setShowSolution(false);
           setShowModal(true);
         }
-
       }
     };
 
@@ -951,7 +1107,7 @@ function FluidCalculator() {
     let choiceFormula;
 
     const choiceData = () => {
-      if (choice === "pressure"){
+      if (choice === "pressure") {
         givenValues = {
           Pressure1: pressure1,
           Density: density,
@@ -995,9 +1151,9 @@ function FluidCalculator() {
             setVelocity2,
             setGravity,
           ],
-        };}
-      if (choice === "velocity")
-      {
+        };
+      }
+      if (choice === "velocity") {
         givenValues = {
           Pressure1: pressure1,
           Density: density,
@@ -1043,8 +1199,7 @@ function FluidCalculator() {
           ],
         };
       }
-      if (choice === "height")
-      {
+      if (choice === "height") {
         givenValues = {
           Pressure1: pressure1,
           Density: density,
